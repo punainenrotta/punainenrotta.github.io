@@ -1,8 +1,10 @@
 ---
 layout: default
-title: "Happy Jekylling!"
+title: "Etusivu"
 ---
 
-## You're ready to go!
+# Tervetuloa rottablogiin!
 
-Start developing your Jekyll website.
+Rottablogiin tulen kirjoittamaan kaikennäköisistä aiheista. Jos jaksan ;)
+
+~ Rotta

@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   </head>
   <body>
-    {{ content }}
+    
+    <div class="main-layout">
+      
+      {% include header-banner.html %}
+
+      <div class="site-index">
+        <a href="./"><h2>Etusivu</h2></a>
+        <h2>Kirjoitukset</h2>
+        {% if site.posts.size == 0 %}
+          Yhtään kirjoitusta ei ole vielä julkaistu!
+        {% endif %}
+        {% for post in site.posts %}
+          <div>{{ post.title }}</div>
+        {% endfor %}
+      </div>
+  
+      <main>
+        {{ content }}
+      </main>
+
+    </div>
   </body>
 </html>
