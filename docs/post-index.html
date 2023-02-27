@@ -1,0 +1,27 @@
+---
+    title: Kirjoitukset
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include basic-head.html %}
+    <link rel="stylesheet" href="{{ "/assets/css/common.css" | relative_url }}">
+</head>
+<body>
+    <main>
+        <ul>
+            {% for post in site.posts %}
+            <li>
+                <a href={{post.href}}>
+                    <h3>{{post.title}}</h3>
+                    <p>{% include date-fi.html date=post.date %}</p>
+                    <p>{{post.description}}</p>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+    {% include footer.html %}
+</body>
+</html>

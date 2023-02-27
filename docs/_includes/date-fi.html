@@ -1,0 +1,18 @@
+<!-- Whitespace added for readability -->
+{% assign m = include.date | date: "%-m" %}
+{{ include.date | date: "%-d" }}.
+{% case m %}
+  {% when '1' %}Tammikuuta
+  {% when '2' %}Helmikuuta
+  {% when '3' %}Maaliskuuta
+  {% when '4' %}Huhtikuuta
+  {% when '5' %}Toukokuuta
+  {% when '6' %}Kes&auml;kuuta
+  {% when '7' %}Hein&auml;kuuta
+  {% when '8' %}Elokuuta
+  {% when '9' %}Syyskuuta
+  {% when '10' %}Lokakuuta
+  {% when '11' %}Marraskuuta
+  {% when '12' %}Joulukuuta
+{% endcase %}
+{{ include.date | date: "%Y" }}

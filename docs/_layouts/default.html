@@ -1,33 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
     <title>{{ page.title }} - {{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   </head>
   <body>
     
-    <div class="main-layout">
-      
-      {% include header-banner.html %}
-
-      <div class="site-index">
-        <a href="./"><h2>Etusivu</h2></a>
-        <h2>Kirjoitukset</h2>
-        {% if site.posts.size == 0 %}
-          Yhtään kirjoitusta ei ole vielä julkaistu!
-        {% endif %}
-        {% for post in site.posts %}
-          <div>{{ post.title }}</div>
-        {% endfor %}
-      </div>
-  
-      <main>
-        <img src="{{ page.banner-image | relative_url }}">
-        <div>{{ content }}</div>
-      </main>
-
-    </div>
   </body>
 </html>

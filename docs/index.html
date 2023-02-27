@@ -1,0 +1,113 @@
+---
+title: "Etusivu"
+---
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include basic-head.html %}
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  </head>
+  <body>
+
+    <div class="h-background">
+        <h1>
+            <script>
+                const HEADER_TEXT = "ROTTABLOGI";
+                for(let char of HEADER_TEXT) {
+                    const char_divider = document.createElement('div');
+                    char_divider.className = "char-wrap";
+                    char_divider.innerText = char;
+                    document.write( char_divider.outerHTML );
+                }
+            </script>
+        </h1>
+        <div class="fade"></div>
+    </div>
+
+    <main>
+
+        <div>
+          <h2>
+              Tervetuloa Rottablogiin!
+          </h2>
+          <p class="lead">
+              Kaikenlaista sitä kirjoittaa kun on väsynyt. Aikana, jolloin merkitys syntyy kuulluksi tulemisesta, tekee mieli huutaa. Huutaa kaikille ja kaiken aikaa. Silti tyhjiöön kuiskaaminen on hauskaa.<br>
+              Turhaa eli vailla paineita.
+          </p>
+        </div>
+
+        <div id="index">
+
+          <div class="gallery">
+            <div class="gallery-viewport">
+              {% for post in site.posts limit:5 %}
+              <a href="{{post.url}}" class="card">
+                <div class="image-container" style="background-image: url({{post.img}});"></div>
+                <p class="date">{% include date-fi.html date=post.date %}</p>
+                <h3>{{post.title}}</h3>
+                <p class="description">{{post.description}}</p>
+              </a>
+              {% endfor %}
+            </div>
+            <div class="gallery-shade left">
+              <div class="gallery-control back pointer" onclick="((el) => {
+                const gallery = $(el).closest('.gallery');
+                const viewport = gallery.children('.gallery-viewport');
+                const currScroll = viewport.scrollLeft();
+                viewport.scrollLeft(currScroll - viewport.children().width());
+              })(this)"></div>
+            </div>
+            <div class="gallery-shade right">
+              <div class="gallery-control forward pointer" onclick=" ((el) => {
+                const gallery = $(el).closest('.gallery');
+                const viewport = gallery.children('.gallery-viewport');
+                const currScroll = viewport.scrollLeft();
+                viewport.scrollLeft(currScroll + viewport.children().width());
+              })(this);"></div>
+            </div>
+
+            
+            <div class="gallery-dots pointer">
+              <script>
+                ((el) => {
+                  const viewport = $(el).parent().siblings('.gallery-viewport');
+                  let dots = $();
+                  const base_offset = viewport.children().eq(0).offset().left;
+                  viewport.children().each(function(){
+                    const card = $(this);
+                    const start_offset = card.offset().left - base_offset;
+                    const new_dot = $('<div>')
+                      .addClass('dot')
+                      .click( function() {
+                        viewport.scrollLeft( start_offset );
+                      });
+                      dots = dots.add(new_dot);
+                    });
+                    $(el).replaceWith(dots);
+                    viewport.on('scroll', function() {
+                      const i = $('.gallery-viewport').children().toArray().map( (e, index) => [$(e).offset().left, index]).filter(e => e[0] > 0)[0][1];
+                      dots.removeClass('active');
+                      dots.eq(i).addClass('active');
+                    });
+                })(document.currentScript);
+              </script>  
+            </div>
+
+          </div>
+
+          <div style="margin-left: 4em;">
+            <h2>Viimeisimmät kirjoitukset</h2>
+            <p>
+              <a href="post-index.html">Tässä listassa</a> kaikki tekstit.
+            </p>
+          </div>
+        </div>
+
+    </main>
+
+    {% include footer.html %}
+
+  </body>
+</html>
